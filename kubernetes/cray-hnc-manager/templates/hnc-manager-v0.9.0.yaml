@@ -549,6 +549,7 @@ spec:
         - --excluded-namespace=kube-public
         - --excluded-namespace=hnc-system
         - --excluded-namespace=kube-node-lease
+        - --included-namespace-regex={{ .Values.includedNamespacesRegex }}
         command:
         - /manager
         image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
