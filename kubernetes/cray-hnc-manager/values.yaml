@@ -32,8 +32,32 @@ image:
   tag: v1.0.0
 
 #
-# Only apply hnc configuration to tenants namespace,
-# along with requiring namespaces managed by hnc have
-# 'tenant' in the name.
+# Allow specifying namespaces to exclude from HNC management.
+# Default to namespaces known to CSM (except the 'tenants' namespace).
 #
-includedNamespacesRegex: tenant.*
+excludedNameSpaces:
+  - backups
+  - ceph-cephfs
+  - ceph-rbd
+  - ceph-rgw
+  - cert-manager
+  - cert-manager-init
+  - default
+  - gatekeeper-system
+  - ims
+  - istio-operator
+  - istio-system
+  - loftsman
+  - metallb-system
+  - nexus
+  - opa
+  - operators
+  - pki-operator
+  - services
+  - sma
+  - spire
+  - sysmgmt-health
+  - uas
+  - user
+  - vault
+  - velero

@@ -614,6 +614,11 @@ spec:
         - --excluded-namespace=kube-public
         - --excluded-namespace=hnc-system
         - --excluded-namespace=kube-node-lease
+        {{- if .Values.excludedNameSpaces }}
+        {{- range $ns := .Values.excludedNameSpaces }}
+        - --excluded-namespace= {{- $ns }}
+        {{- end }}
+        {{- end }}
         - --enable-internal-cert-management
         - --cert-restart-on-secret-refresh
         command:

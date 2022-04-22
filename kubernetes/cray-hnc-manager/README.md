@@ -24,4 +24,12 @@ Steps to update this chart:
    ```
 
    * comment out the namespace creation at the top (cray-drydock does that)
+   * Add this section for command args:
+   ```
+   {{- if .Values.excludedNameSpaces }}
+   {{- range $ns := .Values.excludedNameSpaces }}
+   - --excluded-namespace= {{- $ns }}
+   {{- end }}
+   {{- end }}
+   ```
    * remove the old version (hnc-manager-v0.9.0.yaml)
