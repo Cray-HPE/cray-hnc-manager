@@ -29,7 +29,7 @@
 #
 image:
   repository: artifactory.algol60.net/csm-docker/stable/gcr.io/k8s-staging-multitenancy/hnc-manager
-  tag: v0.9.0
+  tag: v1.0.0
 
 #
 # Only apply hnc configuration to tenants namespace,

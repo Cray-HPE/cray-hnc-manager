@@ -23,8 +23,15 @@
 #
 apiVersion: v2
 name: cray-hnc-manager
-version: 0.0.1
+version: 0.0.2
 description: Hierarchical Namespace Controller (HNC) Manger
+keywords:
+  - cray-hnc-manager
 home: https://github.com/Cray-HPE/cray-hnc-manager
 maintainers:
   - name: bklei
+annotations:
+  artifacthub.io/images: |
+    - name: hnc-manager
+      image: artifactory.algol60.net/csm-docker/stable/gcr.io/k8s-staging-multitenancy/hnc-manager:v1.0.0
+  artifacthub.io/license: MIT
