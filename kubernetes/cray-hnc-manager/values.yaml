@@ -33,7 +33,16 @@ image:
 
 #
 # Only apply hnc configuration to tenants namespace,
-# along with requiring namespaces managed by hnc have
-# 'tenant' in the name.
+# along with names that begin with a customer specified
+# prefix.
 #
-includedNamespacesRegex: tenant.*
+# For example, the following setting would allow hnc management
+# of the 'tenants' namespace (default), as well as vcluster.*
+# tenant names:
+#
+#   validTenantNamePrefix: vcluster
+#
+# Default behavior is to require 'tenant' as the tenant/namespace
+# prefix.
+#
+validTenantNamePrefix: tenant

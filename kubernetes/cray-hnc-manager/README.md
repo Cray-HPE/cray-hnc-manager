@@ -18,10 +18,20 @@ Steps to update this chart:
 
    * In the templates dir:
 
-   ```
+     ```
      HNC_VERSION=v1.0.0-rc2
-   curl -o hnc-manager-${HNC_VERSION}.yaml https://github.com/kubernetes-sigs/hierarchical-namespaces/releases/download/${HNC_VERSION}/default.yaml
-   ```
+     curl -o hnc-manager-${HNC_VERSION}.yaml https://github.com/kubernetes-sigs/hierarchical-namespaces/releases/download/${HNC_VERSION}/default.yaml
+     ```
 
    * comment out the namespace creation at the top (cray-drydock does that)
+   * add back this section for the manager args so it honors customizations:
+
+     ```
+     {{- if .Values.validTenantNamePrefix }}
+     - --included-namespace-regex=(^tenants$|^{{ .Values.validTenantNamePrefix }}.*)
+     {{- else }}
+     - --included-namespace-regex=(^tenants$)
+     {{- end }}
+     ```
+
    * remove the old version (hnc-manager-v0.9.0.yaml)

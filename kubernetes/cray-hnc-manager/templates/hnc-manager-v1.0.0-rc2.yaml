@@ -614,6 +614,11 @@ spec:
         - --excluded-namespace=kube-public
         - --excluded-namespace=hnc-system
         - --excluded-namespace=kube-node-lease
+        {{- if .Values.validTenantNamePrefix }}
+        - --included-namespace-regex=(^tenants$|^{{ .Values.validTenantNamePrefix }}.*)
+        {{- else }}
+        - --included-namespace-regex=(^tenants$)
+        {{- end }}
         - --enable-internal-cert-management
         - --cert-restart-on-secret-refresh
         command:
