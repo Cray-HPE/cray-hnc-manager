@@ -593,7 +593,7 @@ metadata:
   name: hnc-controller-manager
   namespace: hnc-system
 spec:
-  replicas: 1
+  replicas: {{ .Values.numReplicas }}
   selector:
     matchLabels:
       control-plane: controller-manager
@@ -615,9 +615,9 @@ spec:
         - --excluded-namespace=hnc-system
         - --excluded-namespace=kube-node-lease
         {{- if .Values.validTenantNamePrefix }}
-        - --included-namespace-regex=(^tenants$|^{{ .Values.validTenantNamePrefix }}.*)
+        - --included-namespace-regex=(^multi-tenancy$|^tenants$|^tapms-operator$|^slurm-operator$|^{{ .Values.validTenantNamePrefix }}.*)
         {{- else }}
-        - --included-namespace-regex=(^tenants$)
+        - --included-namespace-regex=(^multi-tenancy$|^tenants$|^tapms-operator$|^slurm-operator$)
         {{- end }}
         - --enable-internal-cert-management
         - --cert-restart-on-secret-refresh
@@ -768,7 +768,7 @@ webhooks:
     - '*'
     scope: Namespaced
   sideEffects: None
-  timeoutSeconds: 2
+  timeoutSeconds: {{ .Values.webhookTimeoutSeconds }}
 - admissionReviewVersions:
   - v1
   clientConfig:

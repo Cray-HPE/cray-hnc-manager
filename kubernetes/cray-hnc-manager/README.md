@@ -27,10 +27,18 @@ Steps to update this chart:
    * add back this section for the manager args so it honors customizations:
 
      ```
+     timeoutSeconds: {{ .Values.webhookTimeoutSeconds }}
+     ```
+
+     ```
+     replicas: {{ .Values.numReplicas }}
+     ```
+
+     ```
      {{- if .Values.validTenantNamePrefix }}
-     - --included-namespace-regex=(^tenants$|^{{ .Values.validTenantNamePrefix }}.*)
+     - --included-namespace-regex=(^multi-tenancy$|^tenants$|^tapms-operator$|^slurm-operator$|^{{ .Values.validTenantNamePrefix }}.*)
      {{- else }}
-     - --included-namespace-regex=(^tenants$)
+     - --included-namespace-regex=(^multi-tenancy$|^tenants$|^tapms-operator$|^slurm-operator$)
      {{- end }}
      ```
 
