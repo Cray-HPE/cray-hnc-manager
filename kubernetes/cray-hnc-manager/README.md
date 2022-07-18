@@ -27,6 +27,10 @@ Steps to update this chart:
    * add back this section for the manager args so it honors customizations:
 
      ```
+     image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+     ```
+
+     ```
      timeoutSeconds: {{ .Values.webhookTimeoutSeconds }}
      ```
 

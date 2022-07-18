@@ -623,7 +623,7 @@ spec:
         - --cert-restart-on-secret-refresh
         command:
         - /manager
-        image: gcr.io/k8s-staging-multitenancy/hnc-manager:v1.0.0-rc2
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         livenessProbe:
           failureThreshold: 1
           httpGet:
