@@ -21,8 +21,8 @@ OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */}}
+# Let cray-drydock create the namespace with resource limits and sidecar
 #apiVersion: v1
-# Let cray-drydock create the namespace with resource limits
 #kind: Namespace
 #metadata:
 #  labels:
@@ -593,6 +593,7 @@ metadata:
   name: hnc-controller-manager
   namespace: hnc-system
 spec:
+  #replicas: 1
   replicas: {{ .Values.numReplicas }}
   selector:
     matchLabels:
@@ -614,15 +615,16 @@ spec:
         - --excluded-namespace=kube-public
         - --excluded-namespace=hnc-system
         - --excluded-namespace=kube-node-lease
+        - --enable-internal-cert-management
+        - --cert-restart-on-secret-refresh
         {{- if .Values.validTenantNamePrefix }}
         - --included-namespace-regex=(^multi-tenancy$|^tenants$|^tapms-operator$|^slurm-operator$|^{{ .Values.validTenantNamePrefix }}.*)
         {{- else }}
         - --included-namespace-regex=(^multi-tenancy$|^tenants$|^tapms-operator$|^slurm-operator$)
         {{- end }}
-        - --enable-internal-cert-management
-        - --cert-restart-on-secret-refresh
         command:
         - /manager
+        #image: gcr.io/k8s-staging-multitenancy/hnc-manager:v1.0.0
         image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         livenessProbe:
           failureThreshold: 1
@@ -768,6 +770,7 @@ webhooks:
     - '*'
     scope: Namespaced
   sideEffects: None
+  #timeoutSeconds: 2
   timeoutSeconds: {{ .Values.webhookTimeoutSeconds }}
 - admissionReviewVersions:
   - v1
