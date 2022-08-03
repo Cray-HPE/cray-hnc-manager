@@ -19,7 +19,7 @@ Steps to update this chart:
    * In the templates dir:
 
      ```
-     HNC_VERSION=v1.0.0-rc2
+     HNC_VERSION=v1.0.0
      curl -o hnc-manager-${HNC_VERSION}.yaml https://github.com/kubernetes-sigs/hierarchical-namespaces/releases/download/${HNC_VERSION}/default.yaml
      ```
 
@@ -38,6 +38,7 @@ Steps to update this chart:
      replicas: {{ .Values.numReplicas }}
      ```
 
+     Add this section after the `--excluded-namespace` args:
      ```
      {{- if .Values.validTenantNamePrefix }}
      - --included-namespace-regex=(^multi-tenancy$|^tenants$|^tapms-operator$|^slurm-operator$|^{{ .Values.validTenantNamePrefix }}.*)
@@ -46,4 +47,4 @@ Steps to update this chart:
      {{- end }}
      ```
 
-   * remove the old version (hnc-manager-v0.9.0.yaml)
+   * remove the old version (hnc-manager-v0.1.0-rc2.yaml)
