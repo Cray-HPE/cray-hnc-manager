@@ -23,7 +23,7 @@
 #
 apiVersion: v2
 name: cray-hnc-manager
-version: 0.0.5
+version: 0.0.6
 description: Hierarchical Namespace Controller (HNC) Manger
 keywords:
   - cray-hnc-manager
