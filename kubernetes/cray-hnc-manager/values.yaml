@@ -47,7 +47,7 @@ image:
 #
 validTenantNamePrefix: vcluster
 webhookTimeoutSeconds: 30
-numReplicas: 1
+numReplicas: 2
 
 # Needed for wait-for job
 kubectl:
