@@ -49,7 +49,7 @@ lint:
 test:
 	docker run --rm \
 		-v ${PWD}/kubernetes:/apps \
-		${HELM_UNITTEST_IMAGE} -3 \
+		${HELM_UNITTEST_IMAGE} \
 		cray-hnc-manager
 
 package:
