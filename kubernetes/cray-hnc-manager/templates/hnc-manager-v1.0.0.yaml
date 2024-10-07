@@ -627,7 +627,7 @@ spec:
         #image: gcr.io/k8s-staging-multitenancy/hnc-manager:v1.0.0
         image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         livenessProbe:
-          failureThreshold: 1
+          failureThreshold: 3
           httpGet:
             path: /healthz
             port: 8081
